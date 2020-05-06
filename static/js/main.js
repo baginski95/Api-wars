@@ -1,23 +1,28 @@
-async function getResidents(button){
-    let planet_url = button.dataset.planet;
-    const result = await fetch(planet_url)
-        .then(res => res.json());
-    return result;
-
-}
+// async function getResidents(button){
+//     let planet_url = button.dataset.planet;
+//     const result = await fetch(planet_url)
+//         .then(res => res.json());
+//     console.log(result);
+//     return result;
+//
+// }
 
 async function init(){
     let resButtons = document.getElementsByClassName('res-button');
     for(let button of resButtons){
-        button.addEventListener('click', async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            let something = await getResidents(e.target);
-            let planetName = something.name;
-            let residents_url = something.residents;
-    console.log(planetName);
-
-            let output= `<div class="modal" id="${planetName}-residents">
+        button.addEventListener('click', (e) => {
+                console.log("add button");
+            // e.preventDefault();
+            // e.stopPropagation();
+            let planet_url = e.target.dataset.planet;
+            // let something =  getResidents(e.target);
+            fetch(planet_url)
+                .then(res=> res.json())
+                .then(data=>{
+                    console.log(data)
+                    let planetName = data.name
+                    let output = document.createElement('div')
+                     output.innerHTML= `<div class="modal" id="${planetName}-residents">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -29,7 +34,7 @@ async function init(){
 
       <!-- Modal body -->
       <div class="modal-body">
-        
+
       </div>
 
       <!-- Modal footer -->
@@ -39,8 +44,18 @@ async function init(){
 
     </div>
   </div>
-</div`;
-            document.body.innerHTML += output;
+</div>`;
+            document.body.appendChild(output);
+                })
+
+
+
+                ;
+            // let planetName = something.name;
+            // let residents_url = something.residents;
+    // console.log(planet_url);
+
+
         })
     }
 }
