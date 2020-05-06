@@ -20,7 +20,7 @@
                 <button type="button" class="btn btn-primary"> Next </button>
             </div>
     </div>
-    <div class="row">
+    <div class="row pt-2">
         <div class="col-sm">
         <table class="table table-hover table-bordered text-center">
             <thead class="thead-primary">
@@ -45,11 +45,11 @@
                      <td>{{ planet['surface_water'] }}</td>
                      <td>{{ planet['population'] }}</td>
                      <td>
-                           <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#planetResidents">
-                               {{ planet['residents']|length if planet['residents']|length != 0 else 'No known residents' }} residents
+                           <button type="button" class="btn btn-secondary-90" data-toggle="modal" data-target="#planetResidents">
+                               {{ planet['residents']|length if planet['residents']|length != 0 else 'No known' }} residents
                            </button>
                      </td>
-                     <td><button type="button" class="btn btn-secondary"> Vote</button></td>
+                     <td><button type="button" class="btn btn-secondary-90"> Vote</button></td>
                 </tr>
             {% endfor %}
             </tbody>
