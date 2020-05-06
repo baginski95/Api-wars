@@ -11,11 +11,10 @@ def start():
     response = requests.get('https://swapi.dev/api/planets/').json()
     next_page = response['next']
     planets = response['results']
-    len(response)
-    print(response)
-    print(type(response))
+    print(planets)
 
-    return render_template('index.html', planets=planets, res_counter=0)
+
+    return render_template('index.html', planets=planets, next_page=next_page)
 
 
 if __name__ == "__main__":
