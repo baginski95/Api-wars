@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-sm">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered text-center">
             <thead class="thead-primary">
             <tr>
                 <th>Name</th>
@@ -49,7 +49,7 @@
                                {{ planet['residents']|length if planet['residents']|length != 0 else 'No known residents' }} residents
                            </button>
                      </td>
-                     <td><button type="button" class="btn btn-secondary"></button></td>
+                     <td><button type="button" class="btn btn-secondary"> Vote</button></td>
                 </tr>
             {% endfor %}
             </tbody>
