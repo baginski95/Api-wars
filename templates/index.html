@@ -45,7 +45,7 @@
                      <td>{{ planet['surface_water'] }}</td>
                      <td>{{ planet['population'] }}</td>
                      <td>
-                           <button type="button" class="btn btn-secondary-99 res-button" data-planet="{{ planet['url'] }}" data-toggle="modal" data-target="#{{planet['name']}}-residents">
+                           <button type="button" class="btn btn-secondary-99 res-button" data-planet="{{ planet['url'] }}" data-planet_name = {{planet['name']}} data-toggle="modal" data-target="#{{planet['name']}}-residents">
                                {{ planet['residents']|length if planet['residents']|length != 0 else 'No known' }} residents
                            </button>
                      </td>
