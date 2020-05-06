@@ -46,7 +46,7 @@
                      <td>{{ planet['population'] }}</td>
                      <td>
                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#planetResidents">
-                               {{ planet['residents']|length if len(planet['residents']) != 0 else 'No known residents' }} residents
+                               {{ planet['residents']|length if planet['residents']|length != 0 else 'No known residents' }} residents
                            </button>
                      </td>
                      <td><button type="button" class="btn btn-secondary"></button></td>
