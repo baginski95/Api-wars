@@ -7,9 +7,9 @@ idna==2.7
 psycopg2==2.8.4
 psycopg2-binary==2.7.5
 pycparser==2.20
-requests==2.19.1
+requests==2.20.0
 six==1.14.0
-urllib3==1.23
+urllib3==1.24.2
 click==7.1.1
 Flask==1.1.2
 itsdangerous==1.1.0
