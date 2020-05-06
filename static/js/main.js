@@ -6,12 +6,10 @@ async function getResidents(button){
 
 }
 
-async function init(){
+function init(){
     let resButtons = document.getElementsByClassName('res-button');
     for(let button of resButtons){
         button.addEventListener('click', async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
             let something = await getResidents(e.target);
             let planetName = something.name;
             let residents_url = something.residents;
