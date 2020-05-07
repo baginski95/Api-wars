@@ -1,66 +1,63 @@
-// async function getResidents(button){
-//     let planet_url = button.dataset.planet;
-//     const result = await fetch(planet_url)
-//         .then(res => res.json());
-//     console.log(result);
-//     return result;
-//
-// }
+async function populateModalHTML(button) {
 
-function init() {
+    let planet_url = button.dataset.planet;
+    const firstResponse = await fetch(planet_url);
+    const firstJson = await firstResponse.json();
+                            let output = document.createElement('div');
+                output.classList.add('modal-pp');
+                output.innerHTML = `<button class="close-btn" id="close-btn">
+                                      <i class="fa fa-times"></i>
+                                      </button>`;
+    output.innerHTML += `<h2>${firstJson.name}</h2>`;
+    // console.log(output);
+    for (let resident of firstJson.residents) {
+        const resident1 = await fetch(resident);
+           const residentJson = await resident1.json();
+           output.innerHTML += `<h4>${residentJson.name}</h4>`;
+    }
+    return output
+}
+
+
+async function init() {
     let resButtons = document.getElementsByClassName('res-button');
     for (let button of resButtons) {
-        console.log(button);
 
-        document.body.innerHTML +=`<div class="modal" id="${button.dataset.planet_name}-residents">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Residents of ${button.dataset.planet_name}</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>`;
-
-
-        button.addEventListener('click', (e) => {
-            console.log("add button");
+        button.addEventListener('click', async (e) => {
+            // console.log("add button");
             // e.preventDefault();
             // e.stopPropagation();
-            let planet_url = e.target.dataset.planet;
-            // let something =  getResidents(e.target);
-            // fetch(planet_url)
-            //     .then(res=> res.json())
-            //     .then(data=>{
-            //         console.log(data)
-            //         let planetName = data.name
-            //         let output = document.createElement('div')
-            //          output.innerHTML= ``;
-            // document.body.appendChild(output);
-            //     })
+            // let planet_url = e.target.dataset.planet;
+            let modal_container = document.getElementById("modal-container-pp");
+
+            const content =  await populateModalHTML(e.target)
+            modal_container.appendChild(content);
+
+            //Make modal visible
+            modal_container.classList.add("show-modal");
 
 
-            ;
-            // let planetName = something.name;
-            // let residents_url = something.residents;
-            // console.log(planet_url);
 
+            //Close modal functionality
 
-        });
+            //Closing modal by clicking on button
+            let closeButton = document.getElementById('close-btn')
+            closeButton.addEventListener('click',(e)=>{
+                modal_container.classList.remove('show-modal')
+                modal_container.removeChild(modal_container.lastChild)
+            });
+            //Closing modal by clicking anywhere outside modal
+            window.addEventListener('click', (e) => {
+                if (e.target == modal_container) {
+                    modal_container.classList.remove('show-modal')
+                    modal_container.removeChild(modal_container.lastChild)
+                }
+            })
+
+            // const test1 = await request();
+            // console.log( test1);
+
+        })
     }
 }
 init();
