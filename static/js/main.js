@@ -26,9 +26,6 @@ async function populateModalHTML(button) {
                             </tr>
                         </thead>
                         <tbody>`;
-    // console.log(firstJson.residents[0]);
-
-
 
         for (let resident of firstJson.residents) {
             const resident1 = await fetch(resident);
@@ -43,11 +40,9 @@ async function populateModalHTML(button) {
                                     <td>${residentJson.birth_year}</td>
                                     <td>${residentJson.gender}</td>
                                 </tr>`;
-
         }
 
-
-     outputContent += `</tbody>
+    outputContent += `</tbody>
                         </table>`;
 
     output.innerHTML = outputContent;
@@ -90,8 +85,7 @@ async function init() {
                 }
             })
 
-            // const test1 = await request();
-            // console.log( test1);
+
 
         })
     }
