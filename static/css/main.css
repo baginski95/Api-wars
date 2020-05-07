@@ -32,7 +32,7 @@
     /* to make it in the middle: */
     transform: translate(-50%, -50%);
     max-width: 100%;
-    width: 400px;
+    width: 1200px;
     animation-name: modalopen;
     animation-duration: var(--modal-duration);
 }

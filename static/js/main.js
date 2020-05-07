@@ -4,17 +4,53 @@ async function populateModalHTML(button) {
     const firstResponse = await fetch(planet_url);
     const firstJson = await firstResponse.json();
                             let output = document.createElement('div');
+                            let outputContent = ''
                 output.classList.add('modal-pp');
-                output.innerHTML = `<button class="close-btn" id="close-btn">
+                outputContent = `<button class="close-btn" id="close-btn">
                                       <i class="fa fa-times"></i>
                                       </button>`;
-    output.innerHTML += `<h2>${firstJson.name}</h2>`;
-    // console.log(output);
-    for (let resident of firstJson.residents) {
-        const resident1 = await fetch(resident);
-           const residentJson = await resident1.json();
-           output.innerHTML += `<h4>${residentJson.name}</h4>`;
-    }
+    outputContent += `<h2>Residents of ${firstJson.name}</h2>
+                        <table class="table table-hover table-bordered text-center">
+                        <thead class="thead-primary">
+<!--                                                <table class="">-->
+<!--                        <thead class="">-->
+                            <tr>
+                                <th>Name</th>
+                                <th>Height</th>
+                                <th>Mass</th>
+                                <th>Skin color</th>
+                                <th>Hair color</th>
+                                <th>Eye color</th>
+                                <th>Birth year</th>
+                                <th>Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+    // console.log(firstJson.residents[0]);
+
+
+
+        for (let resident of firstJson.residents) {
+            const resident1 = await fetch(resident);
+            const residentJson = await resident1.json();
+            outputContent += `<tr>
+                                    <td>${residentJson.name}</td>
+                                    <td>${residentJson.height}</td>
+                                    <td>${residentJson.mass}</td>
+                                    <td>${residentJson.skin_color}</td>
+                                    <td>${residentJson.hair_color}</td>
+                                    <td>${residentJson.eye_color}</td>
+                                    <td>${residentJson.birth_year}</td>
+                                    <td>${residentJson.gender}</td>
+                                </tr>`;
+
+        }
+
+
+     outputContent += `</tbody>
+                        </table>`;
+
+    output.innerHTML = outputContent;
     return output
 }
 
