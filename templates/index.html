@@ -18,13 +18,14 @@
         <div class="row">
 
             <div class="col-sm">
-                <form action="/0" method="post">
-
+               <div class="centre-form">
+                <form>
                 <button name="button-prev" type="submit" class="{{ 'btn btn-primary disabled' if prev_page == None else 'btn btn-primary' }}" data-api="{{ prev_page }}" value="{{ prev_page }}"> Previous </button>
                     </form>
                     <form action="/1" method="post">
-                <button name="button-next" type="submit" class="btn btn-primary" data-api="{{ next_page}}" value="{{ next_page }}"> Next </button>
+                <button name="button-next" type="submit" class="{{ 'btn btn-primary disabled' if next_page == None else 'btn btn-primary' }}" data-api="{{ next_page}}" value="{{ next_page }}"> Next </button>
                 </form>
+                   </div>
             </div>
     </div>
     <div class="row pt-2">

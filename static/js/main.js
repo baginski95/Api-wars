@@ -51,6 +51,15 @@ async function populateModalHTML(button) {
 
 
 async function init() {
+    let inactivePrevButton = document.getElementsByClassName('disabled')
+    for (let prevButton of inactivePrevButton){
+        prevButton.addEventListener('click', (e)=> {
+            console.log("weszlo");
+            e.preventDefault();
+            e.stopPropagation();
+        })
+    }
+
     let resButtons = document.getElementsByClassName('res-button');
     for (let button of resButtons) {
 
