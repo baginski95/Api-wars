@@ -37,7 +37,17 @@ def start(button_id=None):
     return render_template('index.html', planets=planets, next_page=next_page, prev_page=prev_page)
 
 
+@app.route('/registration', methods=['GET', 'POST'])
+def registration():
+    if request.method == 'POST':
 
+        new_user = dict(request.form)
+
+        #data_manager.add_user(new_user)
+
+        return redirect(url_for('start'))
+
+    return render_template('registration_form.html')
 
 
 if __name__ == "__main__":

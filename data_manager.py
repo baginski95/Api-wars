@@ -30,4 +30,5 @@ def test_select(cursor):
     answers = [dict(row) for row in cursor.fetchall()]
     return answers
 
-# print(test_select())
+
+#print(test_select())
