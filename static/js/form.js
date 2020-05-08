@@ -1,6 +1,7 @@
 let username = document.getElementById('user-name');
 let password1 = document.getElementById('password1');
 let password2 = document.getElementById('password2');
+let subButton = document.getElementById('submit');
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
@@ -33,8 +34,24 @@ username.addEventListener('change', async (e) => {
       let fetchedUsers = await fetch_users();
       for (let userInDb of fetchedUsers) {
         if (userInDb.username == userNameToCheck) {
+          document.getElementById('checkUser').textContent = 'User name already exists';
+          document.getElementById('checkUser').classList.toggle('invisible');
+          console.log("if jest");
+          /*form.classList.add('was-validated');*/
+          form.addEventListener('submit', function(event) {
+          event.stopPropagation();
 
+          // return false
+      }
+        , false);
+          break;
         }
+        else{
+          console.log("i else jest tez");
+          document.getElementById('checkUser').textContent = '';
+          document.getElementById('checkUser').classList.toggle('invisible');
+        }
+
       }
     }
 );

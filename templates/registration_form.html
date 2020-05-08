@@ -12,12 +12,11 @@
 <div class = 'registration'>
     <form class="needs-validation form-group" id='form' action="{{ url_for('registration') }}"
           method="post" novalidate>
-        <input id="user-name" class ='form-control' type="text" name="username" placeholder="enter username" required></br>
-        <div class="valid-feedback">
-        Looks good!
+        <input id="user-name" class ='form-control' type="text" name="username" placeholder="enter username" required>
+        <p class = "invisible" id="checkUser" ></p>
       </div>
         <div class="invalid-feedback">
-          Please, fill in both fields.
+          Username already exists!
         </div>
         <input id="password1" class ='form-control' type="password" name="password" placeholder="enter password" required></br>
                 <div class="valid-feedback">
