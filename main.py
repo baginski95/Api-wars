@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, escape, session, url_for
 import bcrypt
 import requests
+from util import json_response
+import data_manager
 
 app = Flask(__name__)
 app.secret_key = b'_5#2211aay2L"F4Q8z\n\xec]/'
@@ -16,18 +18,14 @@ def start(button_id=None):
         next_page = response['next']
         prev_page = response['previous']
         planets = response['results']
-        print(planets)
-        print(prev_page)
 
     else:
         if button_id == '0':
-            print('wykonany if')
             response = requests.get(request.form['button-prev']).json()
             planets = response['results']
             next_page = response['next']
             prev_page = response['previous']
         else:
-            print('wykonany else')
             response = requests.get(request.form['button-next']).json()
             planets = response['results']
             next_page = response['next']
@@ -48,6 +46,12 @@ def registration():
         return redirect(url_for('start'))
 
     return render_template('registration_form.html')
+
+
+@app.route('/get-users')
+@json_response
+def get_users():
+    return data_manager.get_users()
 
 
 if __name__ == "__main__":

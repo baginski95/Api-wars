@@ -24,11 +24,17 @@ def get_questions(cursor, question_id=None):
     return questions
 """
 
+
+@connection.connection_handler
+def get_users(cursor):
+    cursor.execute(""" SELECT username from users""")
+    users = cursor.fetchall()
+    print(users)
+    return users
+
+
 @connection.connection_handler
 def test_select(cursor):
     cursor.execute("""SELECT * FROM users """)
     answers = [dict(row) for row in cursor.fetchall()]
     return answers
-
-
-#print(test_select())
