@@ -50,16 +50,20 @@
                      <td>{{ planet['diameter'] }}</td>
                      <td>{{ planet['climate'] }}</td>
                      <td>{{ planet['terrain'] }}</td>
-                     <td>{{ planet['surface_water'] }}</td>
+                     <td>{{ planet['surface_water'] + '%'  if planet['surface_water'] != 'unknown' else 'unknown' }}</td>
                      <td>{{ planet['population'] }}</td>
                      <td>
+                         {% if planet['residents'] %}
                            <button type="button" class="btn btn-secondary-99 res-button" data-planet="{{ planet['url'] }}" data-planet_name = {{planet['name']}} data-toggle="modal" data-target="#{{planet['name']}}-residents">
-                               {{ planet['residents']|length if planet['residents']|length != 0 else 'No known' }} residents
+                               {{ planet['residents']|length if planet['residents']|length != 0 }} residents
                            </button>
+                         {% else %}
+                             No known residents
+                         {% endif %}
                      </td>
                      <td><button type="button" class="btn btn-secondary-90"> Vote</button></td>
                 </tr>
-            {% endfor %}
+            {% endfor %}git status
             </tbody>
         </table>
         </div>
