@@ -51,3 +51,11 @@
 .centre-form {
     display: flex;
 }
+
+.btn.btn-primary.disabled.hidden{
+    display: none; !important;
+}
+
+.btn.btn-primary.disabled {
+    display: block;
+}

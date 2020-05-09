@@ -29,14 +29,23 @@ async function fetch_users() {
 }
 
 
+function checkPasswordMatch(pass1, pass2){
+    if (pass1.value !== pass2.value){
+        return false
+    } else {
+        return true
+    }
+}
+
 username.addEventListener('change', async (e) => {
       let userNameToCheck = e.target.value;
       let fetchedUsers = await fetch_users();
+      let blockingVariable = 1;
       for (let userInDb of fetchedUsers) {
         if (userInDb.username == userNameToCheck) {
           document.getElementById('checkUser').textContent = 'User name already exists';
           document.getElementById('checkUser').classList.toggle('invisible');
-          console.log("if jest");
+          subButton.classList.add("hidden");
           /*form.classList.add('was-validated');*/
           form.addEventListener('submit', function(event) {
           event.stopPropagation();
@@ -47,11 +56,28 @@ username.addEventListener('change', async (e) => {
           break;
         }
         else{
-          console.log("i else jest tez");
           document.getElementById('checkUser').textContent = '';
           document.getElementById('checkUser').classList.toggle('invisible');
+          subButton.classList.remove("hidden");
+
         }
 
       }
     }
 );
+
+password2.addEventListener("input", e=>{
+    console.log('listener wszedl');
+    let passwordCheckResult = checkPasswordMatch(password1, password2)
+    if (!passwordCheckResult){
+        console.log('if wszedl');
+        document.getElementById('checkPasswordMatch').textContent = "Password dont match";
+        document.getElementById('checkPasswordMatch').classList.remove('invisible');
+        subButton.classList.add("hidden");
+    }else {
+        console.log('else wszedl');
+        document.getElementById('checkPasswordMatch').textContent = "";
+        subButton.classList.remove("hidden");
+        document.getElementById('checkPasswordMatch').classList.add('invisible');
+    }
+});

@@ -3,6 +3,7 @@ import bcrypt
 import requests
 from util import json_response
 import data_manager
+import util
 
 app = Flask(__name__)
 app.secret_key = b'_5#2211aay2L"F4Q8z\n\xec]/'
@@ -11,8 +12,8 @@ app.secret_key = b'_5#2211aay2L"F4Q8z\n\xec]/'
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/<button_id>", methods=['GET', 'POST'])
 def start(button_id=None):
+
     if request.method != "POST":
-        # or request.form['button-prev'] == 'https://swapi.dev/api/planets/?page=1'
         response = requests.get('https://swapi.dev/api/planets/').json()
 
         next_page = response['next']
@@ -40,13 +41,40 @@ def registration():
     if request.method == 'POST':
 
         new_user = dict(request.form)
+        new_user['password'] = util.hash_password(new_user["password"])
 
-        #data_manager.add_user(new_user)
+        data_manager.insert_users(new_user)
 
         return redirect(url_for('start'))
 
     return render_template('registration_form.html')
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        userdata_to_check = dict(request.form)
+        password_from_database = data_manager.checkIfUserExists(userdata_to_check)
+
+        if util.verify_password(userdata_to_check['password'], password_from_database):
+            session["user"] = userdata_to_check["username"]
+            print("password match")
+            return redirect(url_for("start"))
+        else:
+            print("password DONT match")
+            return redirect(url_for("start"))
+
+
+    else:
+        return render_template("login_form.html")
+
+
+@app.route('/logout')
+def logout_user():
+    # print()
+    session.pop("user",None)
+
+    return redirect(url_for("start"))
 
 @app.route('/get-users')
 @json_response

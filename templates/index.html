@@ -10,6 +10,36 @@
 <body>
 <div class="container">
     <div class="row">
+
+
+            <nav class="navbar navbar-light bg-light justify-content-between">
+
+
+
+
+                {% if "user" in session %}
+                <a class="navbar-brand" href="/logout"> Logout user: {{session["user"]}} </a>
+                {% else %}
+                <a class="navbar-brand" href="/registration"> Register </a>
+                 <a class="navbar-brand" href="/login"> Login </a>
+                 {% endif %}
+
+
+
+
+
+
+        </td>
+    </tr>
+
+
+                <form class="form-inline mr-sm-2" action="/search" method="get">
+                    <input class="form-control my-2 my-sm-0" type="search" placeholder="Search" aria-label="Search" name="sphrase" id="search_phrase" required >
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+    <div class="row">
         <div class="col-sm">
             <h1> Star Wars universe planets</h1>
 

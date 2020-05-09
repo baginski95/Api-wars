@@ -8,8 +8,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
+<div class="top-bar">
+     <a href="{{ url_for('start') }}">Back to main page</a>
 <h1>Registration</h1></hr>
+
+      </div>
 <div class = 'registration'>
+
     <form class="needs-validation form-group" id='form' action="{{ url_for('registration') }}"
           method="post" novalidate>
         <input id="user-name" class ='form-control' type="text" name="username" placeholder="enter username" required>
@@ -26,13 +31,14 @@
           Please, fill in both fields.
         </div>
         <input id="password2" class ='form-control' type="password"  placeholder="retype password" required></br>
-                <div class="valid-feedback">
+<p class = "invisible" id="checkPasswordMatch" ></p>
+<div class="valid-feedback">
         Looks good!
       </div>
         <div class="invalid-feedback">
           Please, fill in both fields.
         </div>
-        <button type="submit" class="btn btn-primary" id="submit">Create User</button>
+        <button type="submit" class="btn btn-primary disabled" id="submit">Create User</button>
     </form>
  </div>
 
