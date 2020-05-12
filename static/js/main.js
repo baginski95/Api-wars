@@ -1,7 +1,8 @@
 async function populateModalHTML(button) {
 
     let planet_url = button.dataset.planet;
-    const firstResponse = await fetch(planet_url);
+    let planet_url2 = planet_url.replace('http','https')
+    const firstResponse = await fetch(planet_url2);
     const firstJson = await firstResponse.json();
                             let output = document.createElement('div');
                             let outputContent = ''
