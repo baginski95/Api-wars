@@ -82,10 +82,10 @@ def get_users():
     return data_manager.get_users()
 
 
-if __name__ == "__main__":
-    app.run(
-        debug=True,
-        # host='0.0.0.0',
-        port=6969
-    )
+# if __name__ == "__main__":
+#     app.run(
+#         debug=True,
+#         # host='0.0.0.0',
+#         port=6969
+#     )
 
