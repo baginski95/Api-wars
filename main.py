@@ -39,15 +39,12 @@ def start(button_id=None):
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'POST':
-
         new_user = dict(request.form)
         new_user['password'] = util.hash_password(new_user["password"])
-
         data_manager.insert_users(new_user)
-
         return redirect(url_for('start'))
-
-    return render_template('registration_form.html')
+    else:
+        return render_template('registration_form.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -63,8 +60,6 @@ def login():
         else:
             print("password DONT match")
             return redirect(url_for("start"))
-
-
     else:
         return render_template("login_form.html")
 
