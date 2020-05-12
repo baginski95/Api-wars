@@ -27,12 +27,12 @@ async function populateModalHTML(button) {
                             </tr>
                         </thead>
                         <tbody>`;
-console.log(firstJson.residents)
+console.log(firstJson.residents);
         for (let resident of firstJson.residents) {
-            let resident_with_https = await resident.replace('http','//')
-            console.log(resident_with_https)
+            let resident_with_https = await resident.replace('http','https');
+            console.log(resident_with_https);
             const resident1 = await fetch(resident_with_https);
-            alert(resident_with_https)
+            alert(resident_with_https);
             const residentJson = await resident_with_https.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
@@ -55,7 +55,7 @@ console.log(firstJson.residents)
 
 
 async function init() {
-    let inactivePrevButton = document.getElementsByClassName('disabled')
+    let inactivePrevButton = document.getElementsByClassName('disabled');
     for (let prevButton of inactivePrevButton){
         prevButton.addEventListener('click', (e)=> {
             e.preventDefault();
@@ -73,7 +73,7 @@ async function init() {
             // let planet_url = e.target.dataset.planet;
             let modal_container = document.getElementById("modal-container-pp");
 
-            const content =  await populateModalHTML(e.target)
+            const content =  await populateModalHTML(e.target);
             modal_container.appendChild(content);
 
             //Make modal visible
@@ -84,15 +84,15 @@ async function init() {
             //Close modal functionality
 
             //Closing modal by clicking on button
-            let closeButton = document.getElementById('close-btn')
+            let closeButton = document.getElementById('close-btn');
             closeButton.addEventListener('click',(e)=>{
-                modal_container.classList.remove('show-modal')
+                modal_container.classList.remove('show-modal');
                 modal_container.removeChild(modal_container.lastChild)
             });
             //Closing modal by clicking anywhere outside modal
             window.addEventListener('click', (e) => {
                 if (e.target == modal_container) {
-                    modal_container.classList.remove('show-modal')
+                    modal_container.classList.remove('show-modal');
                     modal_container.removeChild(modal_container.lastChild)
                 }
             })
@@ -102,4 +102,6 @@ async function init() {
         })
     }
 }
+
+
 init();
