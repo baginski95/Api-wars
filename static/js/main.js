@@ -29,10 +29,10 @@ async function populateModalHTML(button) {
                         <tbody>`;
 console.log(firstJson.residents)
         for (let resident of firstJson.residents) {
-            let resident_with_https = await resident.replace('http','https')
+            // alert(resident)
+            let resident_with_https = resident.replace('http','https')
             console.log(resident_with_https)
             const resident1 = await fetch(resident_with_https);
-            alert(resident_with_https)
             const residentJson = await resident_with_https.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
