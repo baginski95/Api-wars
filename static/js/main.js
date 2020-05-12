@@ -32,7 +32,7 @@ console.log(firstJson.residents)
             let resident_with_https = await resident.replace('http','https')
             const resident1 = await fetch(resident_with_https);
             alert(resident_with_https)
-            const residentJson = await resident1.json();
+            const residentJson = await resident_with_https.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
                                     <td>${residentJson.height}</td>
