@@ -1,0 +1,61 @@
+:root {
+    --primary-color: #30336b;
+    --secondaty-color: #be2edd;
+    --modal-duration: 1s;
+}
+/*body {*/
+/*    background: red; !important;*/
+/*}*/
+.modal-container-pp {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-container-pp.show-modal {
+    display: block;
+    /* background: red; */
+}
+
+.modal-pp {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px (rgba(1, 1, 1, 0.5));
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    /* to make it in the middle: */
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    width: 1200px;
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+.modal-pp h1 {
+    padding: 20px;
+}
+.close-btn {
+    position: absolute;
+    padding: 10px 10px 30px 30px;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    font-size: 25px;
+}
+
+.centre-form {
+    display: flex;
+}
+
+.btn.btn-primary.disabled.hidden{
+    display: none; !important;
+}
+
+.btn.btn-primary.disabled {
+    display: block;
+}

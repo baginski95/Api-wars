@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Api Wars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<div class="top-bar">
+     <a href="{{ url_for('start') }}">Back to main page</a>
+<h1>Registration</h1></hr>
+
+      </div>
+<div class = 'registration'>
+
+    <form class="needs-validation form-group" id='form' action="{{ url_for('registration') }}"
+          method="post" novalidate>
+        <input id="user-name" class ='form-control' type="text" name="username" placeholder="enter username" required>
+        <p class = "invisible" id="checkUser" ></p>
+      </div>
+        <div class="invalid-feedback">
+          Username already exists!
+        </div>
+        <input id="password1" class ='form-control' type="password" name="password" placeholder="enter password" required></br>
+                <div class="valid-feedback">
+        Looks good!
+      </div>
+        <div class="invalid-feedback">
+          Please, fill in both fields.
+        </div>
+        <input id="password2" class ='form-control' type="password"  placeholder="retype password" required></br>
+<p class = "invisible" id="checkPasswordMatch" ></p>
+<div class="valid-feedback">
+        Looks good!
+      </div>
+        <div class="invalid-feedback">
+          Please, fill in both fields.
+        </div>
+        <button type="submit" class="btn btn-primary disabled" id="submit">Create User</button>
+    </form>
+ </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+</body>
+</html>
