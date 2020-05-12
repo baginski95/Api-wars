@@ -1,9 +1,13 @@
 async function populateModalHTML(button) {
 
     let planet_url = button.dataset.planet;
-    // let planet_url2 = planet_url.replace('http','https')
     const firstResponse = await fetch(planet_url);
     const firstJson = await firstResponse.json();
+    const residents_list = await firstJson.residents
+    let resident_with_https = []
+    for (let resident of residents_list) {
+        resident_with_https.push(resident.replace('http','https'));
+    }
                             let output = document.createElement('div');
                             let outputContent = ''
                 output.classList.add('modal-pp');
@@ -27,13 +31,10 @@ async function populateModalHTML(button) {
                             </tr>
                         </thead>
                         <tbody>`;
-console.log(firstJson.residents);
-        for (let resident of firstJson.residents) {
-            let resident_with_https = await resident.replace('http','https');
-            console.log(resident_with_https);
-            const resident1 = await fetch(resident_with_https);
-            alert(resident_with_https);
-            const residentJson = await resident_with_https.json();
+        for (let resident of resident_with_https) {
+
+            const resident1 = await fetch(resident);
+            const residentJson = await resident1.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
                                     <td>${residentJson.height}</td>
@@ -55,7 +56,7 @@ console.log(firstJson.residents);
 
 
 async function init() {
-    let inactivePrevButton = document.getElementsByClassName('disabled');
+    let inactivePrevButton = document.getElementsByClassName('disabled')
     for (let prevButton of inactivePrevButton){
         prevButton.addEventListener('click', (e)=> {
             e.preventDefault();
@@ -73,7 +74,7 @@ async function init() {
             // let planet_url = e.target.dataset.planet;
             let modal_container = document.getElementById("modal-container-pp");
 
-            const content =  await populateModalHTML(e.target);
+            const content =  await populateModalHTML(e.target)
             modal_container.appendChild(content);
 
             //Make modal visible
@@ -84,15 +85,15 @@ async function init() {
             //Close modal functionality
 
             //Closing modal by clicking on button
-            let closeButton = document.getElementById('close-btn');
+            let closeButton = document.getElementById('close-btn')
             closeButton.addEventListener('click',(e)=>{
-                modal_container.classList.remove('show-modal');
+                modal_container.classList.remove('show-modal')
                 modal_container.removeChild(modal_container.lastChild)
             });
             //Closing modal by clicking anywhere outside modal
             window.addEventListener('click', (e) => {
                 if (e.target == modal_container) {
-                    modal_container.classList.remove('show-modal');
+                    modal_container.classList.remove('show-modal')
                     modal_container.removeChild(modal_container.lastChild)
                 }
             })
@@ -102,6 +103,4 @@ async function init() {
         })
     }
 }
-
-
 init();
