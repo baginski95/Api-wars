@@ -4,6 +4,18 @@ async function populateModalHTML(button) {
     // let planet_url2 = planet_url.replace('http','https')
     const firstResponse = await fetch(planet_url);
     const firstJson = await firstResponse.json();
+    const residents_list = await firstJson.residents
+    let resident_with_https = []
+    for (let resident of residents_list) {
+        resident_with_https.push(resident.replace('http','https'));
+    }
+    // let residents_list_with_https = await residents_list.map(await function (single_resident) {
+    //     let resident_https = single_resident.replace('http','https')
+    //     return { ...resident_https}
+    // });
+
+    console.log(`first residents BEZ https${resident_with_https}`);
+    // console.log(`first residents${residents_list_with_https}`);
                             let output = document.createElement('div');
                             let outputContent = ''
                 output.classList.add('modal-pp');
@@ -27,13 +39,12 @@ async function populateModalHTML(button) {
                             </tr>
                         </thead>
                         <tbody>`;
-console.log(firstJson.residents)
-        for (let resident of firstJson.residents) {
+        for (let resident of resident_with_https) {
             // alert(resident)
-            let resident_with_https = resident.replace('http','https')
-            console.log(resident_with_https)
-            const resident1 = await fetch(resident_with_https);
-            const residentJson = await resident_with_https.json();
+            // let resident_with_https = resident.replace('http','https')
+            // console.log(resident)
+            const resident1 = await fetch(resident);
+            const residentJson = await resident1.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
                                     <td>${residentJson.height}</td>
