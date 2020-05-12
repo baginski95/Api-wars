@@ -63,8 +63,6 @@ def login():
         else:
             print("password DONT match")
             return redirect(url_for("start"))
-
-
     else:
         return render_template("login_form.html")
 
@@ -76,6 +74,7 @@ def logout_user():
 
     return redirect(url_for("start"))
 
+
 @app.route('/get-users')
 @json_response
 def get_users():
@@ -83,5 +82,9 @@ def get_users():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(
+        debug=True,
+        # host='0.0.0.0',
+        port=6969
+     )
 
