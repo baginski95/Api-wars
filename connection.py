@@ -33,7 +33,7 @@ def open_database():
 
     try:
         urllib.parse.uses_netloc.append('postgres')
-        url = urllib.parse.urlparse(os.environ.get('postgresql://localhost/books_store'))
+        url = urllib.parse.urlparse(os.environ.get('postgresql://localhost/api-wars-fb'))
         connection = psycopg2.connect(
             database=url.path[1:],
             user=url.username,

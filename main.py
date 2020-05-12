@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = b'_5#2211aay2L"F4Q8z\n\xec]/'
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/main", methods=['GET', 'POST'])
 @app.route("/<button_id>", methods=['GET', 'POST'])
 def start(button_id=None):
 
@@ -76,16 +76,17 @@ def logout_user():
 
     return redirect(url_for("start"))
 
+
 @app.route('/get-users')
 @json_response
 def get_users():
     return data_manager.get_users()
 
 
-# if __name__ == "__main__":
-#     app.run(
-#         debug=True,
-#         # host='0.0.0.0',
-#         port=6969
-#     )
+if __name__ == "__main__":
+    app.run(
+        debug=True,
+        # host='0.0.0.0',
+        port=6969
+     )
 
