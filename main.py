@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = b'_5#2211aay2L"F4Q8z\n\xec]/'
 
 
-@app.route("/main", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/<button_id>", methods=['GET', 'POST'])
 def start(button_id=None):
 
