@@ -39,12 +39,15 @@ def start(button_id=None):
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'POST':
+
         new_user = dict(request.form)
         new_user['password'] = util.hash_password(new_user["password"])
+
         data_manager.insert_users(new_user)
+
         return redirect(url_for('start'))
-    else:
-        return render_template('registration_form.html')
+
+    return render_template('registration_form.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])

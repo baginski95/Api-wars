@@ -1,6 +1,7 @@
 async function populateModalHTML(button) {
 
     let planet_url = button.dataset.planet;
+    // let planet_url2 = planet_url.replace('http','https')
     const firstResponse = await fetch(planet_url);
     const firstJson = await firstResponse.json();
                             let output = document.createElement('div');
@@ -26,10 +27,13 @@ async function populateModalHTML(button) {
                             </tr>
                         </thead>
                         <tbody>`;
-
+console.log(firstJson.residents)
         for (let resident of firstJson.residents) {
-            const resident1 = await fetch(resident);
-            const residentJson = await resident1.json();
+            let resident_with_https = await resident.replace('http','https')
+            console.log(resident_with_https)
+            const resident1 = await fetch(resident_with_https);
+            alert(resident_with_https)
+            const residentJson = await resident_with_https.json();
             outputContent += `<tr>
                                     <td>${residentJson.name}</td>
                                     <td>${residentJson.height}</td>
